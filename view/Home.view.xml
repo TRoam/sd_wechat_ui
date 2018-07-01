@@ -9,9 +9,7 @@
                 press="onOpenDialog"/>
     </headerContent>
     <content>
-        <Button text="{i18n>iWantToNavigate}" class="sapUiTinyMarginEnd"/>
-        <mvc:XMLView viewName="sap.ui.sd.view.HelloPanel"/>
-        <mvc:XMLView viewName="sap.ui.sd.view.InvoiceList"/>
+        <Text text="Wechat OAuth Redirect"/>
     </content>
     </Page>
 </mvc:View>
