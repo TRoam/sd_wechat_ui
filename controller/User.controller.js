@@ -17,6 +17,10 @@
          onInit: function () {
              var oView = this.getView();
 
+             var oRouter = this.getOwnerComponent().getRouter();
+
+			 oRouter.getRoute("user").attachMatched(this._onRouteMatched, this);
+
              oView.setModel(new JSONModel({
                  Code: "",
                  Email: ""
@@ -27,6 +31,11 @@
              sap.ui.getCore().getMessageManager().registerObject(oView.byId("inputCode"), true);
          },
 
+         _onRouteMatched : function (oEvent) {
+			var oArgs, oView;
+			oArgs = oEvent.getParameter("arguments");
+            this.openId = oArgs.openId;
+		 },
          /**
           * Event handler for the continue button
           */
@@ -60,6 +69,10 @@
              } else {
                  MessageBox.alert("A validation error has occured. Complete your input first");
              }
+         },
+
+         doBinding: function(data) {
+
          },
 
          /**

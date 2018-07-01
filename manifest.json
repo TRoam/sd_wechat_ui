@@ -71,7 +71,7 @@
             "target": "create"
          },
          {
-             "pattern": "user",
+             "pattern": "user/{openId}",
              "name": "user",
              "target": "user"
          }],
