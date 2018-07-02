@@ -2,8 +2,9 @@ sap.ui.define([
     "sap/ui/core/UIComponent",
     "sap/ui/model/json/JSONModel",
     "sap/ui/model/resource/ResourceModel",
-	"sap/ui/sd/controller/HelloDialog"
-], function (UIComponent, JSONModel, ResourceModel, HelloDialog) {
+    "sap/ui/sd/controller/HelloDialog",
+	"sap/ui/sd/lib/Wechat"
+], function (UIComponent, JSONModel, ResourceModel, HelloDialog, Wechat) {
     "use strict";
     return UIComponent.extend("sap.ui.sd.Component", {
         metadata: {
@@ -29,6 +30,8 @@ sap.ui.define([
 
             // set dialog
             this._helloDialog = new HelloDialog(this.getRootControl());
+
+            this.wechat = new Wechat(this.getRootControl());
             
             // create the views based on the url/hash
             this.getRouter().initialize();

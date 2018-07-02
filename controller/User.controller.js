@@ -66,13 +66,18 @@
              // output result
              if (!bValidationError) {
                  MessageToast.show("Request send successfully!");
+                 this.doBinding({
+                     Email: aInputs[0].getValue(),
+                     Code: aInputs[1].getValue(),
+                     OpenId: this.openId
+                 });
              } else {
                  MessageBox.alert("A validation error has occured. Complete your input first");
              }
          },
 
          doBinding: function(data) {
-
+            this.getOwnerComponent().wechat.bindUser(data);
          },
 
          /**

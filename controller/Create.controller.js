@@ -8,6 +8,11 @@ sap.ui.define([
 ], function (MessageBox, MessageToast, Controller, SimpleType, ValidateException, JSONModel) {
     "use strict";
     return Controller.extend("sap.ui.sd.controller.Create", {
+        onInit: function () {
+             var oRouter = this.getOwnerComponent().getRouter();
+			 oRouter.getRoute("create").attachMatched(this._onRouteMatched, this);
+        },
+        
         handleValueHelp : function (oController) {
             this.inputId = oController.oSource.sId;
             // create value help dialog
@@ -22,6 +27,12 @@ sap.ui.define([
             // open value help dialog
             this._valueHelpDialog.open();
         },
+
+        _onRouteMatched : function (oEvent) {
+			var oArgs;
+			oArgs = oEvent.getParameter("arguments");
+            this.openId = oArgs.openId;
+		 },
 
         handleCustomerHelp: function(oController) {
             this.inputId = oController.oSource.sId;
@@ -40,6 +51,9 @@ sap.ui.define([
 
         onSubmit: function() {
              MessageToast.show("Sales order created successfully!");
+             this.getOwnerComponent().wechat.createOrder({
+                 OpenId: this.openId
+             });
         },
 
         _handleValueHelpSearch : function (evt) {
