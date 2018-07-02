@@ -7,7 +7,7 @@ sap.ui.define([
         onInit: function() {
            this.code = this.getUrlParam('code');
            this.state = this.getUrlParam('state');
-           this.getOwnerComponent().Wechat.oAuth(this.code, this._handleNextStep.bind(this));
+           this.getOwnerComponent().wechat.oAuth(this.code, this._handleNextStep.bind(this));
         },
 
          getUrlParam: function(name) {
