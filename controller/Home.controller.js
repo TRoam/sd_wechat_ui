@@ -20,11 +20,11 @@ sap.ui.define([
            this.wechatConfig = body;
            var oRouter = this.getOwnerComponent().getRouter();
            if (this.state === 'create') {
-             this.getRouter().navTo("create",{
+             oRouter.navTo("create",{
 				openId: this.wechatConfig.openId
              });
            } else {
-             this.getRouter().navTo("user",{
+             oRouter.navTo("user",{
 				openId: this.wechatConfig.openId
              });
            }
