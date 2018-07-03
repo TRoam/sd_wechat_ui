@@ -5,10 +5,7 @@
       id="helloDialog"
       title="Hello {/recipient/name}">
       <content>
-         <core:Icon
-            src="sap-icon://hello-world"
-            size="8rem"
-            class="sapUiMediumMargin"/>
+         <Text text="{i18n>noAuthorization}" />
       </content>
       <beginButton>
          <Button

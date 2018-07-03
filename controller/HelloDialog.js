@@ -22,6 +22,7 @@ sap.ui.define([
 				var oFragmentController = {
 					onCloseDialog : function () {
 						oDialog.close();
+						wx.closeWindow();
 					}
 				};
 				// create dialog via fragment factory

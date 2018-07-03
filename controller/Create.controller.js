@@ -32,6 +32,11 @@ sap.ui.define([
 			var oArgs;
 			oArgs = oEvent.getParameter("arguments");
             this.openId = oArgs.openId;
+            this.getOwnerComponent().wechat.checkAuth(this.openId, function(auth) {
+                if (!auth) {
+                    this.getOwnerComponent().openHelloDialog();
+                }
+            }.bind(this));
 		 },
 
         handleCustomerHelp: function(oController) {
@@ -50,11 +55,41 @@ sap.ui.define([
         },
 
         onSubmit: function() {
-             MessageToast.show("Sales order created successfully!");
-             this.getOwnerComponent().wechat.createOrder({
-                 OpenId: this.openId
-             });
-             wx.closeWindow();
+            var oView = this.getView();
+            var bValidationError = false;
+
+            var OrderType = oView.byId('inputOrderType');
+            var SoldToParty = oView.byId('inputSoldToParty');
+            var ShipToParty = oView.byId('inputShipToParty');
+            var CusReference = oView.byId('inputCusRef');
+            var CusReferenceDate = oView.byId('inputCusRefDate');
+
+            var values = [ot,solTP,shipTP,cr,crd];
+
+            jQuery.each(values, function (i, oInput) {
+                var v = oInput.getValue();
+                if (v && v.length > 0) {
+                    
+                }else{
+                    oInput.setValueState("Error");
+                    bValidationError = true;
+                }
+            });
+
+            if (!bValidationError) {
+                MessageToast.show("Sales order created successfully!");
+                this.getOwnerComponent().wechat.createOrder({
+                    OpenId: this.openId,
+                    Data: {
+                        OrderType: OrderType.getValue(),
+                        SoldToParty: SoldToParty.getValue(),
+                        ShipToParty: ShipToParty.getValue(),
+                        CusReference: CusReference.getValue(),
+                        CusReferenceDate: CusReferenceDate.getValue()
+                    }
+                });
+                wx.closeWindow();
+            }
         },
 
         _handleValueHelpSearch : function (evt) {
