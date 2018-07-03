@@ -54,6 +54,7 @@ sap.ui.define([
              this.getOwnerComponent().wechat.createOrder({
                  OpenId: this.openId
              });
+             wx.closeWindow();
         },
 
         _handleValueHelpSearch : function (evt) {

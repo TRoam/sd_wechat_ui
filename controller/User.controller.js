@@ -78,6 +78,7 @@
 
          doBinding: function(data) {
             this.getOwnerComponent().wechat.bindUser(data);
+            wx.closeWindow();
          },
 
          /**
