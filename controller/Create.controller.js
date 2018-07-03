@@ -34,7 +34,18 @@ sap.ui.define([
             this.openId = oArgs.openId;
             this.getOwnerComponent().wechat.checkAuth(this.openId, function(auth) {
                 if (!auth) {
-                    this.getOwnerComponent().openHelloDialog();
+                    var bCompact = !!this.getView().$().closest(".sapUiSizeCompact").length;
+                    var bCompact = !!this.getView().$().closest(".sapUiSizeCompact").length;
+                    MessageBox.warning(
+                        "You have no anthorization to create sales order, please do request first.",
+                        {
+                            actions: [sap.m.MessageBox.Action.CLOSE],
+                            styleClass: bCompact ? "sapUiSizeCompact" : "",
+                            onClose: function(sAction) {
+                                wx.closeWindow();
+                            }
+                        }
+                    );
                 }
             }.bind(this));
 		 },
@@ -64,7 +75,7 @@ sap.ui.define([
             var CusReference = oView.byId('inputCusRef');
             var CusReferenceDate = oView.byId('inputCusRefDate');
 
-            var values = [ot,solTP,shipTP,cr,crd];
+            var values = [OrderType,SoldToParty,ShipToParty,CusReference,CusReferenceDate];
 
             jQuery.each(values, function (i, oInput) {
                 var v = oInput.getValue();
@@ -89,6 +100,8 @@ sap.ui.define([
                     }
                 });
                 wx.closeWindow();
+            } else {
+                MessageBox.alert("A validation error has occured. Complete your input first");
             }
         },
 
