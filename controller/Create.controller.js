@@ -90,13 +90,13 @@ sap.ui.define([
             if (!bValidationError) {
                 MessageToast.show("Sales order created successfully!");
                 this.getOwnerComponent().wechat.createOrder({
-                    OpenId: this.openId,
-                    Data: {
-                        OrderType: OrderType.getValue(),
-                        SoldToParty: SoldToParty.getValue(),
-                        ShipToParty: ShipToParty.getValue(),
-                        CusReference: CusReference.getValue(),
-                        CusReferenceDate: CusReferenceDate.getValue()
+                    "OpenId": this.openId,
+                    "Data": {
+                        "OrderType": OrderType.getValue(),
+                        "SoldToParty": SoldToParty.getValue(),
+                        "ShipToParty": ShipToParty.getValue(),
+                        "CusReference": CusReference.getValue(),
+                        "CusReferenceDate": CusReferenceDate.getValue()
                     }
                 });
                 wx.closeWindow();
