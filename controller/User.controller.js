@@ -77,8 +77,9 @@
          },
 
          doBinding: function(data) {
-            this.getOwnerComponent().wechat.bindUser(data);
-            wx.closeWindow();
+            // this.getOwnerComponent().wechat.bindUser(data);
+            // wx.closeWindow();
+            wx.scanQRCode();
          },
 
          /**
