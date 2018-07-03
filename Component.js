@@ -35,6 +35,9 @@ sap.ui.define([
             
             // create the views based on the url/hash
             this.getRouter().initialize();
+
+            // init wechat SDK
+            this.wechat.initSDK();
 		},
 
 		exit : function() {
